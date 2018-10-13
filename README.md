@@ -32,7 +32,7 @@ Promises are not supported natively in any version of Internet Explorer, so if y
 ### Use Callbacks
 
 ```html
-<script src="ask-kodiak-js/dist/ask-kodiak-js.js"></script>
+<script src="ask-kodiak-js/dist/ask-kodiak-js-min.js"></script>
 <script>
   var askKodiak= new AskKodiak('GROUP_ID', 'KEY'), //instantiate using your key and group id. get these from comapny settings in Ask Kodiak.
       callback = function (response) {
@@ -50,7 +50,7 @@ Promises are not supported natively in any version of Internet Explorer, so if y
 ### Or, Use Promises
 
 ```html
-<script src="ask-kodiak-js/dist/ask-kodiak-js.js"></script>
+<script src="ask-kodiak-js/dist/ask-kodiak-js-min.js"></script>
 <script>
   var askKodiak = new AskKodiak('GROUP_ID', 'KEY', true); //instantiate using your key and group id. get these from comapny settings in Ask Kodiak. Third boolean parameter enables promises
 
