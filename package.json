@@ -2,7 +2,7 @@
   "name": "ask-kodiak-js",
   "version": "1.0.0",
   "description": "A dependency-free javascript implementation of the Ask Kodiak API for use in front-end web projects.",
-  "main": "index.html",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

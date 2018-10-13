@@ -19,6 +19,17 @@ Ask Kodiak JS is available on npm as `ask-kodiak-js`.
 $ npm install --save ask-kodiak-js
 ```
 
+To use Ask Kodiak JS, include the JavaScript file in your page, init, and go.
+
+```html
+<script src="ask-kodiak-js/dist/ask-kodiak-js.js"></script>
+<script>
+  askKodiak.init('GROUPID', 'KEY'); //get these from your comapny settings in Ask Kodiak.
+  askKodiak.productsForCode('722511', options, myCallback); 
+</script>
+
+```
+
 ## Contributing
 
 Please refer to the [CONTRIBUTING page](./CONTRIBUTING.md) for more information
