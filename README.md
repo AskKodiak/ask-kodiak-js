@@ -36,6 +36,8 @@ To use Ask Kodiak JS, include the JavaScript file in your page, instantiate, and
   
 </script>
 
+Your API keys give read access to your content on Ask Kodiak. Be sure to keeep them safe. If you consider the information your company has added to Ask Kodiak sensitive, be sure to keep these keys behind a login screen in your app. 
+
 ```
 
 ## Contributing
