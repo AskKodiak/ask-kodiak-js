@@ -1,0 +1,31 @@
+{
+  "name": "ask-kodiak-js",
+  "version": "1.0.0",
+  "description": "A dependency-free javascript implementation of the Ask Kodiak API for use in front-end web projects.",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AskKodiak/ask-kodiak-js.git"
+  },
+  "keywords": [
+    "ask",
+    "kodiak",
+    "insurance",
+    "appetite",
+    "commercial",
+    "insurance",
+    "insurtech"
+  ],
+  "author": "Ask Kodiak",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/AskKodiak/ask-kodiak-js/issues"
+  },
+  "homepage": "https://github.com/AskKodiak/ask-kodiak-js#readme",
+  "dependencies": {
+    "eslint": "^5.7.0"
+  }
+}
