@@ -34,7 +34,7 @@ Promises are not supported natively in any version of Internet Explorer, so if y
 ```html
 <script src="ask-kodiak-js/dist/ask-kodiak-js.js"></script>
 <script>
-  var askKodiak= new askKodiak('GROUP_ID', 'KEY'), //instantiate using your key and group id. get these from comapny settings in Ask Kodiak.
+  var askKodiak= new AskKodiak('GROUP_ID', 'KEY'), //instantiate using your key and group id. get these from comapny settings in Ask Kodiak.
       callback = function (response) {
         console.log(response);
       };
@@ -53,7 +53,7 @@ Promises are not supported natively in any version of Internet Explorer, so if y
 ```html
 <script src="ask-kodiak-js/dist/ask-kodiak-js.js"></script>
 <script>
-  var askKodiak = new askKodiak('GROUP_ID', 'KEY', true); //instantiate using your key and group id. get these from comapny settings in Ask Kodiak. Third boolean parameter enables promises
+  var askKodiak = new AskKodiak('GROUP_ID', 'KEY', true); //instantiate using your key and group id. get these from comapny settings in Ask Kodiak. Third boolean parameter enables promises
 
   // get all BOP products for the retail NAICS sector
   askKodiak.productsForCode('44-45', {'productCodes': 'BOP'}).then(function (response) {
