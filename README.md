@@ -19,13 +19,21 @@ Ask Kodiak JS is available on npm as `ask-kodiak-js`.
 $ npm install --save ask-kodiak-js
 ```
 
-To use Ask Kodiak JS, include the JavaScript file in your page, init, and go.
+To use Ask Kodiak JS, include the JavaScript file in your page, instantiate, and go.
 
 ```html
 <script src="ask-kodiak-js/dist/ask-kodiak-js.js"></script>
 <script>
-  askKodiak.init('GROUPID', 'KEY'); //get these from your comapny settings in Ask Kodiak.
-  askKodiak.productsForCode('722511', options, myCallback); 
+  var askKodiak = new AskKodiak('GROUP_ID', 'KEY'), //instantiate using your key and group id. get these from comapny settings in Ask Kodiak.
+      callback = function (response) {
+        console.log(response);
+      };
+
+  askKodiak.productsForCode('44-45', {}, callback); // get all products for the retail NAICS sector
+  askKodiak.productsForCode('44-45', {'productCodes': 'BOP'}, callback); // get all products for the retail NAICS sector that are BOP
+  askKodiak.productsForCode('44-45', {'entityTypes': 'AS+CCORP', 'productCodes': 'BOP'}, callback); // get all BOP products for the retail NAICS sector that accept Associations and C Corps as entity types
+  askKodiak.trackEvent('test', {foo: 'bar'}, callback); // track an event called 'test' with one property, foo, that has a value of bar.
+  
 </script>
 
 ```

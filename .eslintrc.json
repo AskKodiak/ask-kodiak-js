@@ -3,7 +3,7 @@
     "browser": true
   },
   "globals": {
-
+    "AskKodiak": true
   },
   "extends": "eslint:recommended",
   "rules": {
