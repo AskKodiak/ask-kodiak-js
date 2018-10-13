@@ -25,7 +25,7 @@ $ npm install --save ask-kodiak-js
 
 To use Ask Kodiak JS, include the JavaScript file in your page, instantiate, and go.
 
-Ask Kodiak JS supports using either Promises or callback functions. 
+Ask Kodiak JS supports using either Promises or callback functions (default). 
 
 Promises are not supported natively in any version of Internet Explorer, so if you choose to enable promises in your implementation and want to support IE, you'll need to implement a polyfil like https://github.com/taylorhakes/promise-polyfill. 
 
@@ -45,6 +45,7 @@ Promises are not supported natively in any version of Internet Explorer, so if y
   askKodiak.trackEvent('test', {foo: 'bar'}, callback); // track an event called 'test' with one property, foo, that has a value of bar.
 
 </script>
+```
 
 ### Or, Use Promises
 
