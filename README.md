@@ -94,6 +94,7 @@ Ask Kodiak JS supports all major modern browsers. If you choose to enable Ask Ko
 
 For a full list of options supported by each interface, see the [Ask Kodiak API](https://api.askKodiak.com/doc/) documentation.
 
+----
 
 ### Products
 
@@ -149,6 +150,8 @@ askKodiak.productsForCompany('-Nj840c1sd9nnByho', {'productCodes': 'BOP'}).then(
 });
 ```
 
+----
+
 #### Product
 
 #### Get Product
@@ -172,6 +175,8 @@ askKodiak.getProduct('-Kv9s36or1XZKVHvlYwx').then(function (product) {
   // handle error
 });
 ```
+
+----
 
 ### Company
 
@@ -216,6 +221,8 @@ askKodiak.getCompanyProfile('-L635HNnakPWk0QNHat-').then(function (company) {
   // handle error
 });
 ```
+
+----
 
 ### NAICS
 
@@ -474,6 +481,8 @@ askKodiak.getNaicsSummary().then(function (response) {
 
 ```
 
+----
+
 ### Admin
 
 #### Products
@@ -505,6 +514,7 @@ askKodiak.adminGetProducts({states: 'VA'}).then(function (response) {
   // handle error
 });
 ```
+----
 
 ### Analytics
 
@@ -529,6 +539,8 @@ askKodiak.trackEvent('inbound-referral', {'referer': 'https://www.google.com'}).
   // handle error
 });
 ```
+
+----
 
 ### Product Utils
 
@@ -572,6 +584,8 @@ askKodiak.renderConditionalContent('-Kv9s36or1XZKVHvlYwx', { naicsGroups: '44-45
 });
 
 ```
+
+----
 
 ### Reference Data
 
@@ -682,6 +696,8 @@ askKodiak.getRefDataStates().then(function (response) {
   // handle error
 });
 ```
+
+----
 
 ### Suggest
 
