@@ -85,7 +85,7 @@ requests, code review feedback, and also pull requests.
 
 ## Supported Environments
 
-Ask Kodiak JS supports all major modern browsers (yes, including Internet Explorer although we can argue the word 'modern' in that case) and uses XMLHTTPRequest with callbacks. 
+Ask Kodiak JS supports all major modern browsers. If you choose to enable Ask Kodiak JS Promise support in your implementation and intend to support Internet Explorer, you'll need to implement a polyfil like https://github.com/taylorhakes/promise-polyfill. 
 
 ## Documentation 
 
@@ -98,6 +98,8 @@ Ask Kodiak JS supports all major modern browsers (yes, including Internet Explor
 
 Get products eligible for a given NAICS code. https://api.askKodiak.com/doc/#api-Products-GetProductsForNAICSCode
 
+
+##### Using Callbacks
 ```js
 
 //return all products for the retail sector
@@ -107,6 +109,16 @@ askKodiak.productsForCode('44-45', options, callback);
 // any valid optional request parameter for this interface can be passed in the options object.
 askKodiak.productsForCode('44-45', {'annualRevenue':1000000}, callback);
 
+```
+##### Using Promises
+
+```js
+//return all products for the retail sector
+AskKodiak.productsForCode('44-45').then(function (response) {
+  //handle response
+}).catch(function (error) {
+  // handle error
+});
 ```
 
 #### Products for Company
