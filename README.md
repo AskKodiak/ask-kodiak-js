@@ -89,7 +89,7 @@ Ask Kodiak JS supports all major modern browsers. If you choose to enable Ask Ko
 
 ## Documentation 
 
-**For a full list of options supported by each interface, see the [Ask Kodiak API](https://api.askKodiak.com/doc/) documentation. **
+For a full list of options supported by each interface, see the [Ask Kodiak API](https://api.askKodiak.com/doc/) documentation.
 
 
 ### Products
