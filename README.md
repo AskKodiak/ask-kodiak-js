@@ -16,7 +16,7 @@ Ask Kodiak JS is a dependency free implementation of the [Ask Kodiak API](https:
 Ask Kodiak JS is available on npm as `ask-kodiak-js`.
 
 ```bash
-$ npm install --save ask-kodiak-sdk
+$ npm install --save ask-kodiak-js
 ```
 
 ## Contributing
