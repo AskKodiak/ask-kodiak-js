@@ -49,7 +49,6 @@ Promises are not supported natively in any version of Internet Explorer, so if y
 
 ### Or, Use Promises
 
-
 ```html
 <script src="ask-kodiak-js/dist/ask-kodiak-js.js"></script>
 <script>
@@ -118,7 +117,7 @@ askKodiak.productsForCode('44-45', {'annualRevenue':1000000}, callback);
 
 ```js
 //return all products for the retail sector
-AskKodiak.productsForCode('44-45').then(function (response) {
+askKodiak.productsForCode('44-45').then(function (response) {
   //handle response
 }).catch(function (error) {
   // handle error
@@ -129,6 +128,7 @@ AskKodiak.productsForCode('44-45').then(function (response) {
 
 Get products for a given Company. https://api.askKodiak.com/doc/#api-Products-GetProductsForCompany
 
+##### Using Callbacks
 ```js
 
 //return all products owned by the company with id -Nj840c1sd9nnByho
@@ -139,17 +139,38 @@ askKodiak.productsForCompany('-Nj840c1sd9nnByho', {'productCodes': 'BOP'}, callb
 
 ```
 
+##### Using Promises
+```js
+//return all BOP products owned by the company with id -Nj840c1sd9nnByho
+askKodiak.productsForCompany('-Nj840c1sd9nnByho', {'productCodes': 'BOP'}).then(function (response) {
+  //handle response
+}).catch(function (error) {
+  // handle error
+});
+```
+
 #### Product
 
 #### Get Product
 
 Return a product with the specified id. https://api.askKodiak.com/doc/#api-Product-GetProduct
 
+##### Using Callbacks
 ```js
 
 //return all product with the given id
 askKodiak.getProduct('-Kv9s36or1XZKVHvlYwx', options, callback);
 
+```
+
+##### Using Promises
+```js
+//return all product with the given id
+askKodiak.getProduct('-Kv9s36or1XZKVHvlYwx').then(function (product) {
+  // handle response
+}).catch(function (error) {
+  // handle error
+});
 ```
 
 ### Company
@@ -158,6 +179,7 @@ askKodiak.getProduct('-Kv9s36or1XZKVHvlYwx', options, callback);
 
 Get the basic information about companies with storefronts on Ask Kodiak, including their name, website, and other descriptive information as available. https://api.askKodiak.com/doc/#api-Company-GetCompanies
 
+##### Using Callbacks
 ```js
 
 //get all companies on Ask Kodiak
@@ -165,14 +187,34 @@ askKodiak.getCompanies(options, callback)
 
 ```
 
+##### Using Promises
+```js
+//get all companies on Ask Kodiak
+askKodiak.getCompanies().then(function (companies) {
+  //handle response
+}).catch(function (error) {
+  //handle error
+});
+```
+
 #### Get Company Profile
 
 Get the basic information about a company on Ask Kodiak. https://api.askKodiak.com/doc/#api-Company-GetProfile
 
+##### Using Callbacks
 ```js
 // get the profile of the company by it's id
 askKodiak.getCompanyProfile('-L635HNnakPWk0QNHat-', options, callback);
 
+```
+
+##### Using Promises
+```js
+askKodiak.getCompanyProfile('-L635HNnakPWk0QNHat-').then(function (company) {
+  // handle response
+}).catch(function (error) {
+  // handle error
+});
 ```
 
 ### NAICS
@@ -181,6 +223,7 @@ askKodiak.getCompanyProfile('-L635HNnakPWk0QNHat-', options, callback);
 
 Decode a NAICS MD5 hash into the 6 digit naics code and sub-description it represents. https://api.askKodiak.com/doc/#api-NAICS-GetNaicsCode
 
+##### Using Callbacks
 ```js
 askKodiak.getNaicsCode('0000dc045c872f122d694ef600c394df', options, callback);
 /*
@@ -192,35 +235,86 @@ askKodiak.getNaicsCode('0000dc045c872f122d694ef600c394df', options, callback);
 */
 ```
 
+##### Using Promises
+```js
+
+askKodiak.getNaicsCode('0000dc045c872f122d694ef600c394df').then(function (code) {
+  // handle response
+  /*
+
+  { code: '621511',
+  description: 'Pathology laboratories, medical',
+  hash: '0000dc045c872f122d694ef600c394df' }
+
+  */
+}).catch(function (error) {
+  // handle error
+});
+
+```
+
 #### Get Codes
 
 Get all computed NAICS hashes. Heads up, this is a big hunk of data. We recommend that you cache a copy on your end for best performance.
 https://api.askKodiak.com/doc/#api-NAICS-GetNaicsCodes
 
+##### Using Callbacks
 ```js
 askKodiak.getNaicsCodes(options, callback);
+```
+
+##### Using Promises
+```js
+
+askKodiak.getNaicsCodes().then(function (code) {
+  //big wad-o-data
+}).catch(function (error) {
+  // handle error
+});
+
 ```
 
 #### Get Description
 
 Get a description for a NAICS group. https://api.askKodiak.com/doc/#api-NAICS-GetNaicsDescription
 
+##### Using Callbacks
 ```js
 askKodiak.getNaicsDescription('811310', options, callback);
+```
+
+##### Using Promises
+```js
+askKodiak.getNaicsDescription('811310').then(function (response) {
+  // handle response
+}).catch(function (error) {
+  // handle error
+});
 ```
 
 #### Get Group
 
 Get any given NAICS group using its numerical group number. https://api.askKodiak.com/doc/#api-NAICS-GetNaicsGroup
 
+##### Using Callbacks
 ```js
 askKodiak.getNaicsGroup('8113', options, callback);
+```
+
+##### Using Promises
+```js
+askKodiak.getNaicsGroup('8113').then(function (response) {
+  // handle response
+}).catch(function (error) {
+  // handle error
+});
 ```
 
 #### Get Path
 
 Given a code, return it's NAICS parentage. https://api.askKodiak.com/doc/#api-NAICS-GetNaicsGroupPath
 
+##### Using Callbacks
 ```js
 //As Array...
 askKodiak.getNaicsPath('488190', {}, callback); //{ path: [ '48-49', '488', '4881', '48819', '488190' ] 
@@ -241,18 +335,58 @@ askKodiak.getNaicsPath('488190', {'asObject': true}, callback);
 
 ```
 
+##### Using Promises
+```js
+//As Array...
+askKodiak.getNaicsPath('488190').then(function (response) {
+  // handle response
+  //{ path: [ '48-49', '488', '4881', '48819', '488190' ] }
+}).catch(function (error) {
+  // handle error
+});
+
+// As Object...
+askKodiak.getNaicsPath('488190', {'asObject': true}).then(function (response) {
+  // handle response
+  /*
+
+    { sector: '48-49',
+      subsector: '488',
+      industryGroup: '4881',
+      internationalIndustry: '48819',
+      nationalIndustry: '488190' }
+
+  */
+}).catch(function (error) {
+  // handle error
+});
+```
+
 #### Get Sectors
 
 Get detailed information about all NAICS sectors.  Heads up, this is a big hunk of data. We recommend that you cache a copy on your end for best performance. https://api.askKodiak.com/doc/#api-NAICS-GetNaicsSectors
 
+##### Using Callbacks
 ```js
 askKodiak.getNaicsSectors(options, callback);
+```
+
+##### Using Promises
+```js
+
+askKodiak.getNaicsSectors().then(function (response) {
+  // handle response
+}).catch(function (error) {
+  // handle errors
+});
+
 ```
 
 #### Get Summary for Group Type
 
 Get a comprehensive list of all valid naics groups of the requested type.  https://api.askKodiak.com/doc/#api-NAICS-GetNAICSSummaryForGroupType
 
+##### Using Callbacks
 ```js
 askKodiak.getNaicsSummaryForGroupType('sector', options, callback);
 /*
@@ -283,13 +417,61 @@ askKodiak.getNaicsSummaryForGroupType('sector', options, callback);
 
 ```
 
+##### Using Promises
+```js
+
+askKodiak.getNaicsSummaryForGroupType('sector').then(function (response) {
+  // handle response
+  /*
+  {
+    '11': 'Agriculture, Forestry, Fishing and Hunting',
+    '21': 'Mining, Quarrying, and Oil and Gas Extraction',
+    '22': 'Utilities',
+    '23': 'Construction',
+    '42': 'Wholesale Trade',
+    '51': 'Information',
+    '52': 'Finance and Insurance',
+    '53': 'Real Estate and Rental and Leasing',
+    '54': 'Professional, Scientific, and Technical Services',
+    '55': 'Management of Companies and Enterprises',
+    '56': 'Administrative and Support and Waste Management and Remediation Services',
+    '61': 'Educational Services',
+    '62': 'Health Care and Social Assistance',
+    '71': 'Arts, Entertainment, and Recreation',
+    '72': 'Accommodation and Food Services',
+    '81': 'Other Services (except Public Administration)',
+    '92': 'Public Administration',
+    '31-33': 'Manufacturing',
+    '44-45': 'Retail Trade',
+    '48-49': 'Transportation and Warehousing'
+  }
+
+  */
+}).catch(function (error) {
+  // handle error
+});
+
+```
+
 #### Get Summary
 
 Get a comprehensive list of all valid naics groups indexed by type (e.g. sector, subsector, industry-group, international-industry, or national-industry). https://api.askKodiak.com/doc/#api-NAICS-GetNAICSSummary
 
+##### Using Callbacks
 ```js
 askKodiak.getNaicsSummary(options, callback);
   
+```
+
+##### Using Promises
+```js
+
+askKodiak.getNaicsSummary().then(function (response) {
+  // handle reponse
+}).catch(function (error) {
+  // handle error
+});
+
 ```
 
 ### Admin
@@ -298,6 +480,7 @@ askKodiak.getNaicsSummary(options, callback);
 
 Get products owned by your your group regardless of their permission. https://api.askKodiak.com/doc/#api-Admin-AdminGetProducts.
 
+##### Using Callbacks
 ```js
 // all products
 askKodiak.adminGetProducts(options, callback);
@@ -306,16 +489,45 @@ askKodiak.adminGetProducts(options, callback);
 askKodiak.adminGetProducts({states: 'VA'}, callback);
 ```
 
+##### Using Promises
+```js
+// all products
+askKodiak.adminGetProducts().then(function (response) {
+  // handle response
+}).catch(function (error) {
+  // handle error
+});
+
+// all products with eligibility in VA
+askKodiak.adminGetProducts({states: 'VA'}).then(function (response) {
+  // handle response
+}).catch(function (error) {
+  // handle error
+});
+```
+
 ### Analytics
 
 #### Track Event
 
 Track an event (for example a search or a user action). https://api.askKodiak.com/doc/#api-Analytics-TrackEvent
 
+##### Using Callbacks
 ```js
 // track an event with the name 'inbound-referral' and pass it the specified data
 askKodiak.trackEvent('inbound-referral', {'referer': 'https://www.google.com'}, callback);
 
+```
+
+##### Using Promises
+```js
+// track an event with the name 'inbound-referral' and pass it the specified data
+askKodiak.trackEvent('inbound-referral', {'referer': 'https://www.google.com'}).then(function (response) {
+  // handle response
+  //{ created: true }
+}).catch(function (error) {
+  // handle error
+});
 ```
 
 ### Product Utils
@@ -324,18 +536,41 @@ askKodiak.trackEvent('inbound-referral', {'referer': 'https://www.google.com'}, 
 
 Check the eligibility of a product for any valid 2-6 digit NAICS code or computed NAICS Hash. https://api.askKodiak.com/doc/#api-Product_Utils-ProductIsEligibleForHash
 
+##### Using Callbacks
 ```js
 askKodiak.isProductEligibleForNaics('-Kv9s36or1XZKVHvlYwx', '44-45', options, callback);
 
+```
+
+##### Using Promises
+```js
+askKodiak.isProductEligibleForNaics('-Kv9s36or1XZKVHvlYwx', '44-45').then(function (response) {
+  // handle response
+  //{ isEligible: true, percentOfCodesEligible: 1 }
+}).catch(function (error) {
+  // handle error
+});
 ```
 
 #### Render Conditional Content
 
 Render conditional content for the product associated with the specified conditions. https://api.askKodiak.com/doc/#api-Product_Utils-RenderConditionalContentForProduct
 
+##### Using Callbacks
 ```js
 
 askKodiak.renderConditionalContent('-Kv9s36or1XZKVHvlYwx', { naicsGroups: '44-45', states: 'MA' }, callback);
+```
+
+##### Using Promises
+```js
+
+askKodiak.renderConditionalContent('-Kv9s36or1XZKVHvlYwx', { naicsGroups: '44-45', states: 'MA' }).then(function (response) {
+  // handle response
+}).catch(function (error) {
+  // handle error
+});
+
 ```
 
 ### Reference Data
@@ -344,6 +579,7 @@ askKodiak.renderConditionalContent('-Kv9s36or1XZKVHvlYwx', { naicsGroups: '44-45
 
 Get a list of business entity types for use decoding the coded values associated with a product. https://api.askKodiak.com/doc/#api-Reference_Data-BusinessEntityTypes
 
+##### Using Callbacks
 ```js
 askKodiak.getRefDataEntityTypes(options, callback);
 /*
@@ -357,10 +593,28 @@ askKodiak.getRefDataEntityTypes(options, callback);
 */
 ```
 
+##### Using Promises
+```js
+askKodiak.getRefDataEntityTypes().then(function (response) {
+  // handle response
+  /*
+  {
+    AS: 'Association',
+    CA: 'Condo Association',
+    CC: 'City Commission',
+    CCORP: 'C Corporation',
+    ...
+  */
+}).catch(function (error) {
+  // handle error
+});
+```
+
 #### Product Codes
 
 Get a list of product codes for use decoding the coded values associated with a product.  https://api.askKodiak.com/doc/#api-Reference_Data-ProductCodes
 
+##### Using Callbacks
 ```js
 askKodiak.getRefDataProductCodes(options, callback);  
 /*
@@ -375,10 +629,29 @@ askKodiak.getRefDataProductCodes(options, callback);
 
 ```
 
+##### Using Promises
+```js
+askKodiak.getRefDataProductCodes().then(function (response) {
+  // handle response
+  /*
+  {
+    ACCT: 'Accountants Professional',
+    ACHE: 'Accident and Health',
+    AGENTS: 'Insurance Agents',
+    AGLIA: 'Agriculture Liability',
+    ...
+  }
+  */
+}).catch(function (error) {
+  // handle error
+});
+```
+
 #### States
 
 Get a list of US State name/value pairs. https://api.askKodiak.com/doc/#api-Reference_Data-States
 
+##### Using Callbacks
 ```js
 askKodiak.getRefDataStates(options, callback);
 /*
@@ -392,6 +665,24 @@ askKodiak.getRefDataStates(options, callback);
 */
 ```
 
+##### Using Promises
+```js
+askKodiak.getRefDataStates().then(function (response) {
+  // handle response
+  /*
+  {
+    AK: 'Alaska',
+    AL: 'Alabama',
+    AR: 'Arkansas',
+    AZ: 'Arizona',
+    ...
+  }
+  */
+}).catch(function (error) {
+  // handle error
+});
+```
+
 ### Suggest
 
 If your application has a scenario where the user needs to type in a NAICS code, these interfaces are great for making suggestions in a typeahead control.
@@ -400,6 +691,7 @@ If your application has a scenario where the user needs to type in a NAICS code,
 
 Get suggested hashes associated with a search term. https://api.askKodiak.com/doc/#api-Suggest-NAICSCodes
 
+##### Using Callbacks
 ```js
 // returns 20 hits...
 askKodiak.suggestNaicsCodes('ro', {}, callback);
@@ -408,15 +700,50 @@ askKodiak.suggestNaicsCodes('ro', {}, callback);
 askKodiak.suggestNaicsCodes('ro', { hitsPerPage: '100' } callback);
 ```
 
+##### Using Promises
+```js
+// returns 20 hits...
+askKodiak.suggestNaicsCodes('ro').then(function (response) {
+  console.log(response.hits.length);
+}).catch(function (error) {
+  console.error(error);
+});
+
+// returns 100 hits...
+askKodiak.suggestNaicsCodes('ro', { hitsPerPage: '100' }).then(function (response) {
+  console.log(response.hits.length);
+}).catch(function (error) {
+  console.error(error);
+});
+```
+
 #### Naics Groups
 
 Get suggested 2-6 digit NAICS groups for a search term.
 https://api.askKodiak.com/doc/#api-Suggest-NAICSGroups
 
+##### Using Callbacks
 ```js
 // returns 20 hits...
 askKodiak.suggestNaicsGroups('ro', {}, callback);
 
 // page three of results 5 pages at a time..
 askKodiak.suggestNaicsGroups('ro', { hitsPerPage: 5, page: 3 }, callback);
+```
+
+##### Using Promises
+```js
+// returns 20 hits...
+askKodiak.suggestNaicsGroups('ro').then(function (response) {
+  console.log(response.hits.length);
+}).catch(function (error) {
+  console.error(error);
+});
+
+// page three of results 5 pages at a time..
+askKodiak.suggestNaicsGroups('ro', { hitsPerPage: 5, page: 3 }).then(function (response) {
+  console.log(response.hits.length);
+}).catch(function (error) {
+  console.error(error);
+});
 ```
