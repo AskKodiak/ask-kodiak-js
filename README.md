@@ -25,10 +25,16 @@ $ npm install --save ask-kodiak-js
 
 To use Ask Kodiak JS, include the JavaScript file in your page, instantiate, and go.
 
+Ask Kodiak JS supports using either Promises or callback functions. 
+
+Promises are not supported natively in any version of Internet Explorer, so if you choose to enable promises in your implementation and want to support IE, you'll need to implement a polyfil like https://github.com/taylorhakes/promise-polyfill. 
+
+### Use Callbacks
+
 ```html
 <script src="ask-kodiak-js/dist/ask-kodiak-js.js"></script>
 <script>
-  var askKodiak.= new askKodiak.'GROUP_ID', 'KEY'), //instantiate using your key and group id. get these from comapny settings in Ask Kodiak.
+  var askKodiak= new askKodiak('GROUP_ID', 'KEY'), //instantiate using your key and group id. get these from comapny settings in Ask Kodiak.
       callback = function (response) {
         console.log(response);
       };
@@ -37,7 +43,24 @@ To use Ask Kodiak JS, include the JavaScript file in your page, instantiate, and
   askKodiak.productsForCode('44-45', {'productCodes': 'BOP'}, callback); // get all products for the retail NAICS sector that are BOP
   askKodiak.productsForCode('44-45', {'entityTypes': 'AS+CCORP', 'productCodes': 'BOP'}, callback); // get all BOP products for the retail NAICS sector that accept Associations and C Corps as entity types
   askKodiak.trackEvent('test', {foo: 'bar'}, callback); // track an event called 'test' with one property, foo, that has a value of bar.
-  
+
+</script>
+
+### Or, Use Promises
+
+
+```html
+<script src="ask-kodiak-js/dist/ask-kodiak-js.js"></script>
+<script>
+  var askKodiak = new askKodiak('GROUP_ID', 'KEY', true); //instantiate using your key and group id. get these from comapny settings in Ask Kodiak. Third boolean parameter enables promises
+
+  // get all BOP products for the retail NAICS sector
+  askKodiak.productsForCode('44-45', {'productCodes': 'BOP'}).then(function (response) {
+    // handle response here
+  }).catch(function (error) {
+    // handle error here
+  });
+
 </script>
 
 ```

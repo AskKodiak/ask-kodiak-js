@@ -1,8 +1,10 @@
 /* eslint-disable no-unused-vars */
-function AskKodiak(gid, key, useURL) {
+function AskKodiak(gid, key, usePromises, url) {
 
   var auth = btoa(gid + ':' + key),
-      baseURL = useURL || 'https://api.askkodiak.com/v1'; //use the default url unless otherwise requested
+      baseURL = url || 'https://api.askkodiak.com/v1'; //use the default url unless otherwise requested
+
+  usePromises = usePromises || false; //by default, do not use promises since IE does not support them.
 
   //returns request params as a string, or any empty string if none
   function paramsToString(paramsObj) {
@@ -34,24 +36,46 @@ function AskKodiak(gid, key, useURL) {
 
   }
 
+  function makeRequest(req, callback, data) {
+    data = data || null;
+    // add authentication headers.
+    req.setRequestHeader('Authorization', 'Basic ' + auth);
+
+    // if promises requested, create one and return.
+    if (usePromises === true) {
+      return new Promise(function (resolve, reject) {
+        req.onload = function () {
+          if (req.status === 200) {
+            return resolve(JSON.parse(this.response));
+          } else {
+            return reject(req);
+          }
+        };
+        req.send();
+      });
+    } else {
+      // promises not requested.
+      req.onload = function () {
+        var data = JSON.parse(this.response);
+        if (req.status === 200) {
+          callback(data);
+        } else {
+          throw new Error(req);
+        }
+      };
+      req.send();
+      return req;
+    }
+  }
+
   function post(relativeUrl, data, callback) {
     var uri = baseURL + relativeUrl,
         req = new XMLHttpRequest();
 
     req.open('POST', uri, true);
-    req.setRequestHeader('Authorization', 'Basic ' + auth);
     req.setRequestHeader('Content-Type', 'text/json');
-    req.onload = function () {
-      var data = JSON.parse(this.response);
-      if (req.status === 200) {
-        callback(data);
-      } else {
-        throw new Error(req);
-      }
-    };
-    req.send(data);
 
-    return req;
+    return makeRequest(req, callback, data);
 
   }
 
@@ -62,18 +86,8 @@ function AskKodiak(gid, key, useURL) {
         req = new XMLHttpRequest();
 
     req.open('GET', uri, true);
-    req.setRequestHeader('Authorization', 'Basic ' + auth);
-    req.onload = function () {
-      var data = JSON.parse(this.response);
-      if (req.status === 200) {
-        callback(data);
-      } else {
-        throw new Error(req);
-      }
-    };
-    req.send();
 
-    return req;
+    return makeRequest(req, callback);
 
   }
 
