@@ -66,7 +66,11 @@ Promises are not supported natively in any version of Internet Explorer, so if y
 
 ```
 
+### API Key Security
+
 Your API keys give read access to your content on Ask Kodiak. Be sure to keeep them safe. If you consider the information your company has added to Ask Kodiak sensitive, be sure to keep these keys behind a login screen in your app. 
+
+### Request Parameters
 
 For any API request that supports optional request parameters, pass an `options` object to the method with those values. For example, if making a request where it's important to filter by state and owner, you would pass the following `options` object to the method: 
 
