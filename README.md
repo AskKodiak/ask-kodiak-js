@@ -564,6 +564,40 @@ askKodiak.isProductEligibleForNaics('-Kv9s36or1XZKVHvlYwx', '44-45').then(functi
 });
 ```
 
+#### Get Eligibility By NAICS Group Type
+
+Get the eligibility of a product at a given NAICS group level (`sector`, `subsector`, etc).https://api.askkodiak.com/doc/#api-Product_Utils-ProductEligibilityForType
+
+##### Using Callbacks
+```js
+askKodiak.getEligibilityByNaicsGroupType('-Kv9s36or1XZKVHvlYwx', 'sector', options, callback);
+
+```
+
+##### Using Promises
+```js
+askKodiak.getEligibilityByNaicsGroupType('-Kv9s36or1XZKVHvlYwx', 'sector').then(function (response) {
+  /*
+  {
+    "23" : {
+      "coverage" : 0.993006993006993,
+      "eligibleCodes" : 994
+    },
+    "51" : {
+      "coverage" : 0.3081761006289308,
+      "eligibleCodes" : 147
+    },
+    "44-45" : {
+      "coverage" : 0.09280742459396751,
+      "eligibleCodes" : 40
+    }
+  }
+  */
+}).catch(function (error) {
+  // handle error
+});
+```
+
 #### Render Conditional Content
 
 Render conditional content for the product associated with the specified conditions. https://api.askKodiak.com/doc/#api-Product_Utils-RenderConditionalContentForProduct

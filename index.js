@@ -152,6 +152,9 @@ function AskKodiak(gid, key, usePromises, url) {
   this.isProductEligibleForNaics = function (pid, code, opts, callback) {
     return get('/product-utils/' + pid  + '/is-eligible-for/' + code, opts, callback);
   };
+  this.getEligibilityByNaicsGroupType = function (pid, type, opts, callback) {
+    return get('/product-utils/' + pid  + '/eligibility-by-naics-type/' + type, opts, callback);
+  };
   this.renderConditionalContent = function (pid, opts, callback) {
     return get('/product-utils/conditional-content/' + pid, opts, callback);
   };
