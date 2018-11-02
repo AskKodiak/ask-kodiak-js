@@ -38,6 +38,9 @@ function AskKodiak(gid, key, usePromises, url) {
 
   function makeRequest(req, callback, data) {
     data = data || null;
+    if (data) {
+      data = JSON.stringify(data);
+    }
     // add authentication headers.
     req.setRequestHeader('Authorization', 'Basic ' + auth);
 
@@ -51,19 +54,26 @@ function AskKodiak(gid, key, usePromises, url) {
             return reject(req);
           }
         };
-        req.send();
+        req.onerror = function () {
+          return reject(req);
+        };
+        req.send(data);
       });
     } else {
       // promises not requested.
       req.onload = function () {
-        var data = JSON.parse(this.response);
         if (req.status === 200) {
-          callback(data);
+          callback(JSON.parse(this.response));
         } else {
           throw new Error(req);
         }
       };
-      req.send();
+
+      req.onerror = function () {
+        throw new Error(req);
+      };
+
+      req.send(data);
       return req;
     }
   }
@@ -72,8 +82,8 @@ function AskKodiak(gid, key, usePromises, url) {
     var uri = baseURL + relativeUrl,
         req = new XMLHttpRequest();
 
-    req.open('POST', uri, true);
-    req.setRequestHeader('Content-Type', 'text/json');
+    req.open('POST', uri);
+    req.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
 
     return makeRequest(req, callback, data);
 
