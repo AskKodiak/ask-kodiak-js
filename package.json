@@ -1,10 +1,10 @@
 {
   "name": "ask-kodiak-js",
-  "version": "1.0.2",
+  "version": "2.0.0",
   "description": "A dependency-free javascript implementation of the Ask Kodiak API for use in front-end web projects.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha"
   },
   "repository": {
     "type": "git",
@@ -26,7 +26,10 @@
   },
   "homepage": "https://github.com/AskKodiak/ask-kodiak-js#readme",
   "dependencies": {
-    "eslint": "^5.8.0",
+    "eslint": "^5.12.0",
     "node-minify": "^3.6.0"
+  },
+  "devDependencies": {
+    "mocha": "^5.2.0"
   }
 }
