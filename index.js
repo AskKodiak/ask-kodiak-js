@@ -2,7 +2,7 @@
 function AskKodiak(gid, key, usePromises, url) {
 
   var auth = btoa(gid + ':' + key),
-      baseURL = url || 'https://api.askkodiak.com/v1'; //use the default url unless otherwise requested
+      baseURL = url || 'https://api.askkodiak.com/v2'; //use the default url unless otherwise requested
 
   usePromises = usePromises || false; //by default, do not use promises since IE does not support them.
 
@@ -113,12 +113,24 @@ function AskKodiak(gid, key, usePromises, url) {
   this.getProduct = function (pid, opts, callback) {
     return get('/product/' + pid, opts, callback);
   };
+  this.isProductEligibleForNaics = function (pid, code, opts, callback) {
+    return get('/product/' + pid  + '/is-eligible-for/' + code, opts, callback);
+  };
+  this.getEligibilityByNaicsGroupType = function (pid, type, opts, callback) {
+    return get('/product/' + pid  + '/eligibility-by-naics-type/' + type, opts, callback);
+  };
+  this.getConditionalRules = function (pid, opts, callback) {
+    return get('/product/' + pid  + '/conditional-rules/', opts, callback);
+  };
+  this.renderConditionalContent = function (pid, opts, callback) {
+    return get('/product/' + pid  + '/conditional-content/', opts, callback);
+  };
 
   // COMPANY
   this.getCompanies = function (opts, callback) {
     return get('/companies/', opts, callback);
   };
-  this.getCompanyProfile = function (gid, opts, callback) {
+  this.getCompany = function (gid, opts, callback) {
     return get('/company/' + gid, opts, callback);
   };
 
@@ -154,20 +166,16 @@ function AskKodiak(gid, key, usePromises, url) {
   };
 
   // ANALYTICS
+  this.getReferrals = function (opts, callback) {
+    return get('/analytics/referrals/', opts, callback);
+  };
+  this.getReferral = function (id, opts, callback) {
+    return get('/analytics/referral/' + id, opts, callback);
+  };
   this.trackEvent = function (eventName, eventData, callback) {
     return post('/analytics/track/' + eventName, eventData, callback);
   };
 
-  // PRODUCT UTILS
-  this.isProductEligibleForNaics = function (pid, code, opts, callback) {
-    return get('/product-utils/' + pid  + '/is-eligible-for/' + code, opts, callback);
-  };
-  this.getEligibilityByNaicsGroupType = function (pid, type, opts, callback) {
-    return get('/product-utils/' + pid  + '/eligibility-by-naics-type/' + type, opts, callback);
-  };
-  this.renderConditionalContent = function (pid, opts, callback) {
-    return get('/product-utils/conditional-content/' + pid, opts, callback);
-  };
   // REF DATA
   this.getRefDataEntityTypes = function (opts, callback) {
     return get('/ref-data/business-entity-types/', opts, callback);
@@ -175,8 +183,8 @@ function AskKodiak(gid, key, usePromises, url) {
   this.getRefDataProductCodes = function (opts, callback) {
     return get('/ref-data/product-codes/', opts, callback);
   };
-  this.getRefDataStates = function (opts, callback) {
-    return get('/ref-data/states/', opts, callback);
+  this.getRefDataGeos = function (opts, callback) {
+    return get('/ref-data/geos/', opts, callback);
   };
   // SUGGEST
   this.suggestNaicsCodes = function (term, opts, callback) {

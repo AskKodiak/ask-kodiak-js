@@ -6,7 +6,7 @@
  * [Installation](#installation)
  * [Basic Usage](#basic-usage) 
  * [Contributing](#contributing)
- * [Supported Enviornments](#supported-environments) 
+ * [Supported Environments](#supported-environments) 
  * [Documentation](#documentation)
 
 ## Overview 
@@ -27,14 +27,14 @@ To use Ask Kodiak JS, include the JavaScript file in your page, instantiate, and
 
 Ask Kodiak JS supports using either Promises or callback functions (default). 
 
-Promises are not supported natively in any version of Internet Explorer, so if you choose to enable promises in your implementation and want to support IE, you'll need to implement a polyfil like https://github.com/taylorhakes/promise-polyfill. 
+Promises are not supported natively in any version of Internet Explorer, so if you choose to enable promises in your implementation and want to support IE, you'll need to implement a polyfill like https://github.com/taylorhakes/promise-polyfill. 
 
 ### Use Callbacks
 
 ```html
 <script src="ask-kodiak-js/dist/ask-kodiak-js-min.js"></script>
 <script>
-  var askKodiak= new AskKodiak('GROUP_ID', 'KEY'), //instantiate using your key and group id. get these from comapny settings in Ask Kodiak.
+  var askKodiak= new AskKodiak('GROUP_ID', 'KEY'), //instantiate using your key and group id. get these from company settings in Ask Kodiak.
       callback = function (response) {
         console.log(response);
       };
@@ -52,7 +52,7 @@ Promises are not supported natively in any version of Internet Explorer, so if y
 ```html
 <script src="ask-kodiak-js/dist/ask-kodiak-js-min.js"></script>
 <script>
-  var askKodiak = new AskKodiak('GROUP_ID', 'KEY', true); //instantiate using your key and group id. get these from comapny settings in Ask Kodiak. Third boolean parameter enables promises
+  var askKodiak = new AskKodiak('GROUP_ID', 'KEY', true); //instantiate using your key and group id. get these from company settings in Ask Kodiak. Third boolean parameter enables promises
 
   // get all BOP products for the retail NAICS sector
   askKodiak.productsForCode('44-45', {'productCodes': 'BOP'}).then(function (response) {
@@ -67,15 +67,15 @@ Promises are not supported natively in any version of Internet Explorer, so if y
 
 ### API Key Security
 
-Your API keys give read access to your content on Ask Kodiak. Be sure to keeep them safe. If you consider the information your company has added to Ask Kodiak sensitive, be sure to keep these keys behind a login screen in your app. 
+Your API keys give read access to your content on Ask Kodiak. Be sure to keep them safe. If you consider the information your company has added to Ask Kodiak sensitive, be sure to keep these keys behind a login screen in your app. 
 
 ### Request Parameters
 
-For any API request that supports optional request parameters, pass an `options` object to the method with those values. For example, if making a request where it's important to filter by state and owner, you would pass the following `options` object to the method: 
+For any API request that supports optional request parameters, pass an `options` object to the method with those values. For example, if making a request where it's important to filter by geography and owner, you would pass the following `options` object to the method: 
 
 ```js
 {
-  'states': 'MN+HI',
+  'geos': 'US-MN+US-HI',
   'owners': 'ABC123'
 }
 ```
@@ -88,7 +88,7 @@ requests, code review feedback, and also pull requests.
 
 ## Supported Environments
 
-Ask Kodiak JS supports all major modern browsers. If you choose to enable Ask Kodiak JS Promise support in your implementation and intend to support Internet Explorer, you'll need to implement a polyfil like https://github.com/taylorhakes/promise-polyfill. 
+Ask Kodiak JS supports all major modern browsers. If you choose to enable Ask Kodiak JS Promise support in your implementation and intend to support Internet Explorer, you'll need to implement a polyfill like https://github.com/taylorhakes/promise-polyfill. 
 
 ## Documentation 
 
@@ -152,7 +152,7 @@ askKodiak.productsForCompany('-Nj840c1sd9nnByho', {'productCodes': 'BOP'}).then(
 
 ----
 
-#### Product
+### Product
 
 #### Get Product
 
@@ -174,6 +174,105 @@ askKodiak.getProduct('-Kv9s36or1XZKVHvlYwx').then(function (product) {
 }).catch(function (error) {
   // handle error
 });
+```
+
+#### Check Eligibility for NAICS Code
+
+Check the eligibility of a product for any valid 2-6 digit NAICS code or computed NAICS Hash. https://api.askKodiak.com/doc/#api-Product-ProductIsEligibleForNAICSCode
+
+##### Using Callbacks
+```js
+askKodiak.isProductEligibleForNaics('-Kv9s36or1XZKVHvlYwx', '44-45', options, callback);
+
+```
+
+##### Using Promises
+```js
+askKodiak.isProductEligibleForNaics('-Kv9s36or1XZKVHvlYwx', '44-45').then(function (response) {
+  // handle response
+  //{ isEligible: true, percentOfCodesEligible: 1 }
+}).catch(function (error) {
+  // handle error
+});
+```
+
+#### Get Eligibility By NAICS Group Type
+
+Get the eligibility of a product at a given NAICS group level (`sector`, `subsector`, etc).https://api.askkodiak.com/doc/#api-Product-ProductEligibilityByNAICSGroupType
+
+##### Using Callbacks
+```js
+askKodiak.getEligibilityByNaicsGroupType('-Kv9s36or1XZKVHvlYwx', 'sector', options, callback);
+
+```
+
+##### Using Promises
+```js
+askKodiak.getEligibilityByNaicsGroupType('-Kv9s36or1XZKVHvlYwx', 'sector').then(function (response) {
+  /*
+  {
+    "23" : {
+      "coverage" : 0.993006993006993,
+      "eligibleCodes" : 994
+    },
+    "51" : {
+      "coverage" : 0.3081761006289308,
+      "eligibleCodes" : 147
+    },
+    "44-45" : {
+      "coverage" : 0.09280742459396751,
+      "eligibleCodes" : 40
+    }
+  }
+  */
+}).catch(function (error) {
+  // handle error
+});
+```
+
+#### Render Conditional Content
+
+Render conditional content for the product associated with the specified conditions. https://api.askKodiak.com/doc/#api-Product-RenderConditionalContent
+
+##### Using Callbacks
+```js
+
+askKodiak.renderConditionalContent('-Kv9s36or1XZKVHvlYwx', { naicsGroups: '44-45', geos: 'US-MA' }, callback);
+```
+
+##### Using Promises
+```js
+
+askKodiak.renderConditionalContent('-Kv9s36or1XZKVHvlYwx', { naicsGroups: '44-45', geos: 'US-MA' }).then(function (response) {
+  // handle response
+}).catch(function (error) {
+  // handle error
+});
+
+```
+
+----
+
+#### Get Conditional Rules
+
+Get unprocessed conditional rules for the requested product. **Please note, this interface exists primarily for debugging**. The rules expressed in the response are automatically applied to other product interfaces based on the parameters of the specific request. This interface simply provides a getter for all the rules that have been specified for a product.
+https://api.askKodiak.com/doc/#api-Product-GetConditionalRulesForProduct
+
+##### Using Callbacks
+```js
+
+askKodiak.getConditionalRules('-Kv9s36or1XZKVHvlYwx', {}, callback);
+```
+
+##### Using Promises
+```js
+
+askKodiak.getConditionalRules('-Kv9s36or1XZKVHvlYwx', {}).then(function (response) {
+  // handle response
+}).catch(function (error) {
+  // handle error
+});
+
 ```
 
 ----
@@ -202,20 +301,20 @@ askKodiak.getCompanies().then(function (companies) {
 });
 ```
 
-#### Get Company Profile
+#### Get Company
 
-Get the basic information about a company on Ask Kodiak. https://api.askKodiak.com/doc/#api-Company-GetProfile
+Get the basic information about a company on Ask Kodiak. https://api.askKodiak.com/doc/#api-Company-GetCompany
 
 ##### Using Callbacks
 ```js
 // get the profile of the company by it's id
-askKodiak.getCompanyProfile('-L635HNnakPWk0QNHat-', options, callback);
+askKodiak.getCompany('-L635HNnakPWk0QNHat-', options, callback);
 
 ```
 
 ##### Using Promises
 ```js
-askKodiak.getCompanyProfile('-L635HNnakPWk0QNHat-').then(function (company) {
+askKodiak.getCompany('-L635HNnakPWk0QNHat-').then(function (company) {
   // handle response
 }).catch(function (error) {
   // handle error
@@ -474,7 +573,7 @@ askKodiak.getNaicsSummary(options, callback);
 ```js
 
 askKodiak.getNaicsSummary().then(function (response) {
-  // handle reponse
+  // handle response
 }).catch(function (error) {
   // handle error
 });
@@ -495,7 +594,7 @@ Get products owned by your your group regardless of their permission. https://ap
 askKodiak.adminGetProducts(options, callback);
 
 // all products with eligibility in VA
-askKodiak.adminGetProducts({states: 'VA'}, callback);
+askKodiak.adminGetProducts({geos: 'US-VA'}, callback);
 ```
 
 ##### Using Promises
@@ -508,7 +607,7 @@ askKodiak.adminGetProducts().then(function (response) {
 });
 
 // all products with eligibility in VA
-askKodiak.adminGetProducts({states: 'VA'}).then(function (response) {
+askKodiak.adminGetProducts({geos: 'US-VA'}).then(function (response) {
   // handle response
 }).catch(function (error) {
   // handle error
@@ -525,14 +624,14 @@ Track an event (for example a search or a user action). https://api.askKodiak.co
 ##### Using Callbacks
 ```js
 // track an event with the name 'inbound-referral' and pass it the specified data
-askKodiak.trackEvent('inbound-referral', {'referer': 'https://www.google.com'}, callback);
+askKodiak.trackEvent('inbound-referral', {'referrer': 'https://www.google.com'}, callback);
 
 ```
 
 ##### Using Promises
 ```js
 // track an event with the name 'inbound-referral' and pass it the specified data
-askKodiak.trackEvent('inbound-referral', {'referer': 'https://www.google.com'}).then(function (response) {
+askKodiak.trackEvent('inbound-referral', {'referrer': 'https://www.google.com'}).then(function (response) {
   // handle response
   //{ created: true }
 }).catch(function (error) {
@@ -540,83 +639,45 @@ askKodiak.trackEvent('inbound-referral', {'referer': 'https://www.google.com'}).
 });
 ```
 
-----
+#### Get Referrals
 
-### Product Utils
-
-#### Check Eligibility for NAICS Code
-
-Check the eligibility of a product for any valid 2-6 digit NAICS code or computed NAICS Hash. https://api.askKodiak.com/doc/#api-Product_Utils-ProductIsEligibleForHash
+Retrieve all of your groups referrals from Ask Kodiak. https://api.askKodiak.com/doc/#api-Analytics-GetReferrals
 
 ##### Using Callbacks
 ```js
-askKodiak.isProductEligibleForNaics('-Kv9s36or1XZKVHvlYwx', '44-45', options, callback);
+
+askKodiak.getReferrals(options, callback)
 
 ```
 
 ##### Using Promises
 ```js
-askKodiak.isProductEligibleForNaics('-Kv9s36or1XZKVHvlYwx', '44-45').then(function (response) {
-  // handle response
-  //{ isEligible: true, percentOfCodesEligible: 1 }
+//get all companies on Ask Kodiak
+askKodiak.getReferrals().then(function (companies) {
+  //handle response
 }).catch(function (error) {
-  // handle error
+  //handle error
 });
 ```
 
-#### Get Eligibility By NAICS Group Type
+#### Get Referral
 
-Get the eligibility of a product at a given NAICS group level (`sector`, `subsector`, etc).https://api.askkodiak.com/doc/#api-Product_Utils-ProductEligibilityForType
+Retrieve the details of a referral using it's id. https://api.askKodiak.com/doc/#api-Analytics-GetReferral
 
 ##### Using Callbacks
 ```js
-askKodiak.getEligibilityByNaicsGroupType('-Kv9s36or1XZKVHvlYwx', 'sector', options, callback);
+
+askKodiak.getReferral('-L876NNhjuPWk0QNTay-', options, callback);
 
 ```
 
 ##### Using Promises
 ```js
-askKodiak.getEligibilityByNaicsGroupType('-Kv9s36or1XZKVHvlYwx', 'sector').then(function (response) {
-  /*
-  {
-    "23" : {
-      "coverage" : 0.993006993006993,
-      "eligibleCodes" : 994
-    },
-    "51" : {
-      "coverage" : 0.3081761006289308,
-      "eligibleCodes" : 147
-    },
-    "44-45" : {
-      "coverage" : 0.09280742459396751,
-      "eligibleCodes" : 40
-    }
-  }
-  */
-}).catch(function (error) {
-  // handle error
-});
-```
-
-#### Render Conditional Content
-
-Render conditional content for the product associated with the specified conditions. https://api.askKodiak.com/doc/#api-Product_Utils-RenderConditionalContentForProduct
-
-##### Using Callbacks
-```js
-
-askKodiak.renderConditionalContent('-Kv9s36or1XZKVHvlYwx', { naicsGroups: '44-45', states: 'MA' }, callback);
-```
-
-##### Using Promises
-```js
-
-askKodiak.renderConditionalContent('-Kv9s36or1XZKVHvlYwx', { naicsGroups: '44-45', states: 'MA' }).then(function (response) {
+askKodiak.getReferral('-L876NNhjuPWk0QNTay-d').then(function (company) {
   // handle response
 }).catch(function (error) {
   // handle error
 });
-
 ```
 
 ----
@@ -695,37 +756,20 @@ askKodiak.getRefDataProductCodes().then(function (response) {
 });
 ```
 
-#### States
+#### Geographies
 
-Get a list of US State name/value pairs. https://api.askKodiak.com/doc/#api-Reference_Data-States
+Get geographies supported by Ask Kodiak as objects indexed by an ISO 3166-2 code. For more information on the ISO 3166 standard, see https://www.iso.org/iso-3166-country-codes.html. https://api.askKodiak.com/doc/#api-Reference_Geographies
 
 ##### Using Callbacks
 ```js
-askKodiak.getRefDataStates(options, callback);
-/*
-{
-  AK: 'Alaska',
-  AL: 'Alabama',
-  AR: 'Arkansas',
-  AZ: 'Arizona',
-  ...
-}
-*/
+askKodiak.getRefDataGeos(options, callback);
+
 ```
 
 ##### Using Promises
 ```js
-askKodiak.getRefDataStates().then(function (response) {
+askKodiak.getRefDataGeos().then(function (response) {
   // handle response
-  /*
-  {
-    AK: 'Alaska',
-    AL: 'Alabama',
-    AR: 'Arkansas',
-    AZ: 'Arizona',
-    ...
-  }
-  */
 }).catch(function (error) {
   // handle error
 });
@@ -735,7 +779,7 @@ askKodiak.getRefDataStates().then(function (response) {
 
 ### Suggest
 
-If your application has a scenario where the user needs to type in a NAICS code, these interfaces are great for making suggestions in a typeahead control.
+If your application has a scenario where the user needs to type in a NAICS code, these interfaces are great for making suggestions in a type-ahead control.
 
 #### Naics Codes
 

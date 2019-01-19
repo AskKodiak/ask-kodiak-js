@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Mocha Tests</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="mocha/mocha.css">
+  </head>
+  <body>
+    <div id="mocha"></div>
+    <script src="mocha/mocha.js"></script>
+    <script src="chai/chai.js"></script>
+    <script>mocha.setup('bdd')</script>
+    <!-- Ask Kodiak Lib -->
+    <script src="ask-kodiak-js-min.js"></script>
+    <!-- Tests -->
+    <script src="tests/products/for-code.js"></script>
+    <script src="tests/products/for-company.js"></script>
+
+    <script src="tests/product/get-product.js"></script>
+    <script src="tests/product/is-eligible-for-code.js"></script>
+    <script src="tests/product/eligibility-by-naics-type.js"></script>
+    <script src="tests/product/get-conditional-rules.js"></script>
+    <script src="tests/product/render-conditional-content.js"></script>
+
+    <script src="tests/suggest/naics-codes.js"></script>
+    <script src="tests/suggest/naics-groups.js"></script>
+
+    <script src="tests/company/get-company.js"></script>
+    <script src="tests/company/get-companies.js"></script>
+
+    <script src="tests/naics/get-code.js"></script>
+    <script src="tests/naics/get-codes.js"></script>
+    <script src="tests/naics/get-description.js"></script>
+    <script src="tests/naics/get-group.js"></script>
+    <script src="tests/naics/get-path.js"></script>
+    <script src="tests/naics/get-sectors.js"></script>
+    <script src="tests/naics/get-summary-for-group-type.js"></script>
+    <script src="tests/naics/get-summary.js"></script>
+
+    <script src="tests/ref-data/geographies.js"></script>
+    <script src="tests/ref-data/product-codes.js"></script>
+    <script src="tests/ref-data/business-entity-types.js"></script>
+
+    <script src="tests/analytics/referral.js"></script>
+    <script src="tests/analytics/track.js"></script>
+
+    <script src="tests/admin/products.js"></script>
+
+    <script>
+      //globals. accessible from tests.
+      var askKodiak,
+          gid,
+          pid;
+
+      function run() {
+        var key = document.getElementById('key').value,
+            groupId = document.getElementById('gid').value,
+            productId = document.getElementById('pid').value,
+            url = document.getElementById('url').value,
+            launcher = document.getElementById('launcher');
+
+        if (!key || !groupId || !productId) {
+          return alert('a required field is missing.');
+        }
+
+        launcher.style.display = 'none';
+
+        gid = groupId; //global. accessible from tests
+        pid = productId; //global. accessible from tests
+
+        askKodiak = new AskKodiak(gid, key, false, url);
+        askKodiakPromises = new AskKodiak(gid, key, true, url);
+
+        mocha.run()
+
+      }
+    </script>
+
+    <div id="launcher">
+      <div class="container-fluid">
+        <div class="form-group">
+          <label for="gid">Group ID:</label>
+          <input type="text" class="form-control" id="gid" aria-describedby="gidHelp" placeholder="Your Group ID">
+          <small id="gidHelp" class="form-text text-muted">You can get your group id (gid) from the company settings section of Ask Kodiak.</small>
+        </div>
+        <div class="form-group">
+          <label for="key">API KEY:</label>
+          <input type="text" class="form-control" id="key" aria-describedby="keyHelp" placeholder="Your API Key">
+          <small id="keyHelp" class="form-text text-muted">You can get your API Key from the company settings section of Ask Kodiak.</small>
+        </div>
+        <div class="form-group">
+          <label for="key">Product ID:</label>
+          <input type="text" class="form-control" id="pid" aria-describedby="pidHelp" placeholder="ID of a test product">
+          <small id="pidHelp" class="form-text text-muted">The id of a product your group can access that has rich data (including rules) for testing.</small>
+        </div>
+        <div class="form-group">
+          <label for="url">URL (optional):</label>
+          <input type="text" class="form-control" id="url" aria-describedby="urlHelp" placeholder="API URL">
+          <small id="urlHelp" class="form-text text-muted">Optional, use this to override the default API URL.</small>
+        </div>
+
+        <button class="btn btn-primary" onclick="run()">Go</button>
+      </div>
+    </div>
+  </body>
+</html>

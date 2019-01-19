@@ -1,0 +1,14 @@
+{
+  "env": {
+    "browser": false,
+    "mocha": true,
+    "node": true
+  },
+  "globals": {
+    "chai": true,
+    "askKodiak": true,
+    "askKodiakPromises": true,
+    "gid": true,
+    "pid": true
+  }
+}

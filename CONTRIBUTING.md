@@ -21,7 +21,7 @@ We love new stuff. Share your idea with us by logging into Ask Kodiak, and click
 
 ## Think you found a bug?
 
-Let's sqash it. Make sure you search through existing issues though before you submit, even closed ones as your question may have already been answered.
+Let's squash it. Make sure you search through existing issues though before you submit, even closed ones as your question may have already been answered.
 
 If your issue appears to be a bug, and hasn't been reported, open a new ticket and include example code that reproduces the issue so we can dig in.
 
