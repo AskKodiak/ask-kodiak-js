@@ -1,8 +1,9 @@
 # Testing This Library
 
-ask-kodiak-js uses browser-based Mocha/Chai unit tests. To run them, from the project directory run the command:
+ask-kodiak-js uses browser-based Mocha/Chai unit tests. To run them, from the project directory run the command(s):
 
-`gulp`
+  1. `npm install`
+  2. `gulp`
 
 Open a web browser to http://localhost:3000
 
