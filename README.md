@@ -6,12 +6,12 @@
  * [Installation](#installation)
  * [Basic Usage](#basic-usage) 
  * [Contributing](#contributing)
- * [Supported Enviornments](#supported-environments) 
+ * [Supported Environments](#supported-environments) 
  * [Documentation](#documentation)
 
 ## Overview 
 
-Ask Kodiak JS is a dependency free implementation of the [Ask Kodiak API](https://api.askKodiak.com/doc/) for browser environments. API Keys are required to use, you can obtain those keys from Company Settings once you've created an account.
+Ask Kodiak JS is a dependency free implementation of the [Ask Kodiak API](https://api.askKodiak.com/doc/v1/) for browser environments. API Keys are required to use, you can obtain those keys from Company Settings once you've created an account.
 
 ## Installation
 
@@ -27,14 +27,14 @@ To use Ask Kodiak JS, include the JavaScript file in your page, instantiate, and
 
 Ask Kodiak JS supports using either Promises or callback functions (default). 
 
-Promises are not supported natively in any version of Internet Explorer, so if you choose to enable promises in your implementation and want to support IE, you'll need to implement a polyfil like https://github.com/taylorhakes/promise-polyfill. 
+Promises are not supported natively in any version of Internet Explorer, so if you choose to enable promises in your implementation and want to support IE, you'll need to implement a polyfill like https://github.com/taylorhakes/promise-polyfill. 
 
 ### Use Callbacks
 
 ```html
 <script src="ask-kodiak-js/dist/ask-kodiak-js-min.js"></script>
 <script>
-  var askKodiak= new AskKodiak('GROUP_ID', 'KEY'), //instantiate using your key and group id. get these from comapny settings in Ask Kodiak.
+  var askKodiak= new AskKodiak('GROUP_ID', 'KEY'), //instantiate using your key and group id. get these from company settings in Ask Kodiak.
       callback = function (response) {
         console.log(response);
       };
@@ -52,7 +52,7 @@ Promises are not supported natively in any version of Internet Explorer, so if y
 ```html
 <script src="ask-kodiak-js/dist/ask-kodiak-js-min.js"></script>
 <script>
-  var askKodiak = new AskKodiak('GROUP_ID', 'KEY', true); //instantiate using your key and group id. get these from comapny settings in Ask Kodiak. Third boolean parameter enables promises
+  var askKodiak = new AskKodiak('GROUP_ID', 'KEY', true); //instantiate using your key and group id. get these from company settings in Ask Kodiak. Third boolean parameter enables promises
 
   // get all BOP products for the retail NAICS sector
   askKodiak.productsForCode('44-45', {'productCodes': 'BOP'}).then(function (response) {
@@ -67,7 +67,7 @@ Promises are not supported natively in any version of Internet Explorer, so if y
 
 ### API Key Security
 
-Your API keys give read access to your content on Ask Kodiak. Be sure to keeep them safe. If you consider the information your company has added to Ask Kodiak sensitive, be sure to keep these keys behind a login screen in your app. 
+Your API keys give read access to your content on Ask Kodiak. Be sure to keep them safe. If you consider the information your company has added to Ask Kodiak sensitive, be sure to keep these keys behind a login screen in your app. 
 
 ### Request Parameters
 
@@ -88,11 +88,11 @@ requests, code review feedback, and also pull requests.
 
 ## Supported Environments
 
-Ask Kodiak JS supports all major modern browsers. If you choose to enable Ask Kodiak JS Promise support in your implementation and intend to support Internet Explorer, you'll need to implement a polyfil like https://github.com/taylorhakes/promise-polyfill. 
+Ask Kodiak JS supports all major modern browsers. If you choose to enable Ask Kodiak JS Promise support in your implementation and intend to support Internet Explorer, you'll need to implement a polyfill like https://github.com/taylorhakes/promise-polyfill. 
 
-## Documentation 
+## Documentation
 
-For a full list of options supported by each interface, see the [Ask Kodiak API](https://api.askKodiak.com/doc/) documentation.
+For a full list of options supported by each interface, see the [Ask Kodiak API](https://api.askKodiak.com/doc/v1/) documentation.
 
 ----
 
@@ -100,7 +100,7 @@ For a full list of options supported by each interface, see the [Ask Kodiak API]
 
 #### Products for Code
 
-Get products eligible for a given NAICS code. https://api.askKodiak.com/doc/#api-Products-GetProductsForNAICSCode
+Get products eligible for a given NAICS code. https://api.askKodiak.com/doc/v1/#api-Products-GetProductsForNAICSCode
 
 
 ##### Using Callbacks
@@ -127,7 +127,7 @@ askKodiak.productsForCode('44-45').then(function (response) {
 
 #### Products for Company
 
-Get products for a given Company. https://api.askKodiak.com/doc/#api-Products-GetProductsForCompany
+Get products for a given Company. https://api.askKodiak.com/doc/v1/#api-Products-GetProductsForCompany
 
 ##### Using Callbacks
 ```js
@@ -156,7 +156,7 @@ askKodiak.productsForCompany('-Nj840c1sd9nnByho', {'productCodes': 'BOP'}).then(
 
 #### Get Product
 
-Return a product with the specified id. https://api.askKodiak.com/doc/#api-Product-GetProduct
+Return a product with the specified id. https://api.askKodiak.com/doc/v1/#api-Product-GetProduct
 
 ##### Using Callbacks
 ```js
@@ -182,7 +182,7 @@ askKodiak.getProduct('-Kv9s36or1XZKVHvlYwx').then(function (product) {
 
 #### Get Companies
 
-Get the basic information about companies with storefronts on Ask Kodiak, including their name, website, and other descriptive information as available. https://api.askKodiak.com/doc/#api-Company-GetCompanies
+Get the basic information about companies with storefronts on Ask Kodiak, including their name, website, and other descriptive information as available. https://api.askKodiak.com/doc/v1/#api-Company-GetCompanies
 
 ##### Using Callbacks
 ```js
@@ -204,7 +204,7 @@ askKodiak.getCompanies().then(function (companies) {
 
 #### Get Company Profile
 
-Get the basic information about a company on Ask Kodiak. https://api.askKodiak.com/doc/#api-Company-GetProfile
+Get the basic information about a company on Ask Kodiak. https://api.askKodiak.com/doc/v1/#api-Company-GetProfile
 
 ##### Using Callbacks
 ```js
@@ -228,7 +228,7 @@ askKodiak.getCompanyProfile('-L635HNnakPWk0QNHat-').then(function (company) {
 
 #### Get Code
 
-Decode a NAICS MD5 hash into the 6 digit naics code and sub-description it represents. https://api.askKodiak.com/doc/#api-NAICS-GetNaicsCode
+Decode a NAICS MD5 hash into the 6 digit naics code and sub-description it represents. https://api.askKodiak.com/doc/v1/#api-NAICS-GetNaicsCode
 
 ##### Using Callbacks
 ```js
@@ -263,7 +263,7 @@ askKodiak.getNaicsCode('0000dc045c872f122d694ef600c394df').then(function (code) 
 #### Get Codes
 
 Get all computed NAICS hashes. Heads up, this is a big hunk of data. We recommend that you cache a copy on your end for best performance.
-https://api.askKodiak.com/doc/#api-NAICS-GetNaicsCodes
+https://api.askKodiak.com/doc/v1/#api-NAICS-GetNaicsCodes
 
 ##### Using Callbacks
 ```js
@@ -283,7 +283,7 @@ askKodiak.getNaicsCodes().then(function (code) {
 
 #### Get Description
 
-Get a description for a NAICS group. https://api.askKodiak.com/doc/#api-NAICS-GetNaicsDescription
+Get a description for a NAICS group. https://api.askKodiak.com/doc/v1/#api-NAICS-GetNaicsDescription
 
 ##### Using Callbacks
 ```js
@@ -301,7 +301,7 @@ askKodiak.getNaicsDescription('811310').then(function (response) {
 
 #### Get Group
 
-Get any given NAICS group using its numerical group number. https://api.askKodiak.com/doc/#api-NAICS-GetNaicsGroup
+Get any given NAICS group using its numerical group number. https://api.askKodiak.com/doc/v1/#api-NAICS-GetNaicsGroup
 
 ##### Using Callbacks
 ```js
@@ -319,7 +319,7 @@ askKodiak.getNaicsGroup('8113').then(function (response) {
 
 #### Get Path
 
-Given a code, return it's NAICS parentage. https://api.askKodiak.com/doc/#api-NAICS-GetNaicsGroupPath
+Given a code, return it's NAICS parentage. https://api.askKodiak.com/doc/v1/#api-NAICS-GetNaicsGroupPath
 
 ##### Using Callbacks
 ```js
@@ -371,7 +371,7 @@ askKodiak.getNaicsPath('488190', {'asObject': true}).then(function (response) {
 
 #### Get Sectors
 
-Get detailed information about all NAICS sectors.  Heads up, this is a big hunk of data. We recommend that you cache a copy on your end for best performance. https://api.askKodiak.com/doc/#api-NAICS-GetNaicsSectors
+Get detailed information about all NAICS sectors.  Heads up, this is a big hunk of data. We recommend that you cache a copy on your end for best performance. https://api.askKodiak.com/doc/v1/#api-NAICS-GetNaicsSectors
 
 ##### Using Callbacks
 ```js
@@ -391,7 +391,7 @@ askKodiak.getNaicsSectors().then(function (response) {
 
 #### Get Summary for Group Type
 
-Get a comprehensive list of all valid naics groups of the requested type.  https://api.askKodiak.com/doc/#api-NAICS-GetNAICSSummaryForGroupType
+Get a comprehensive list of all valid naics groups of the requested type.  https://api.askKodiak.com/doc/v1/#api-NAICS-GetNAICSSummaryForGroupType
 
 ##### Using Callbacks
 ```js
@@ -462,7 +462,7 @@ askKodiak.getNaicsSummaryForGroupType('sector').then(function (response) {
 
 #### Get Summary
 
-Get a comprehensive list of all valid naics groups indexed by type (e.g. sector, subsector, industry-group, international-industry, or national-industry). https://api.askKodiak.com/doc/#api-NAICS-GetNAICSSummary
+Get a comprehensive list of all valid naics groups indexed by type (e.g. sector, subsector, industry-group, international-industry, or national-industry). https://api.askKodiak.com/doc/v1/#api-NAICS-GetNAICSSummary
 
 ##### Using Callbacks
 ```js
@@ -474,7 +474,7 @@ askKodiak.getNaicsSummary(options, callback);
 ```js
 
 askKodiak.getNaicsSummary().then(function (response) {
-  // handle reponse
+  // handle response
 }).catch(function (error) {
   // handle error
 });
@@ -487,7 +487,7 @@ askKodiak.getNaicsSummary().then(function (response) {
 
 #### Products
 
-Get products owned by your your group regardless of their permission. https://api.askKodiak.com/doc/#api-Admin-AdminGetProducts.
+Get products owned by your your group regardless of their permission. https://api.askKodiak.com/doc/v1/#api-Admin-AdminGetProducts.
 
 ##### Using Callbacks
 ```js
@@ -520,19 +520,19 @@ askKodiak.adminGetProducts({states: 'VA'}).then(function (response) {
 
 #### Track Event
 
-Track an event (for example a search or a user action). https://api.askKodiak.com/doc/#api-Analytics-TrackEvent
+Track an event (for example a search or a user action). https://api.askKodiak.com/doc/v1/#api-Analytics-TrackEvent
 
 ##### Using Callbacks
 ```js
 // track an event with the name 'inbound-referral' and pass it the specified data
-askKodiak.trackEvent('inbound-referral', {'referer': 'https://www.google.com'}, callback);
+askKodiak.trackEvent('inbound-referral', {'referrer': 'https://www.google.com'}, callback);
 
 ```
 
 ##### Using Promises
 ```js
 // track an event with the name 'inbound-referral' and pass it the specified data
-askKodiak.trackEvent('inbound-referral', {'referer': 'https://www.google.com'}).then(function (response) {
+askKodiak.trackEvent('inbound-referral', {'referrer': 'https://www.google.com'}).then(function (response) {
   // handle response
   //{ created: true }
 }).catch(function (error) {
@@ -546,7 +546,7 @@ askKodiak.trackEvent('inbound-referral', {'referer': 'https://www.google.com'}).
 
 #### Check Eligibility for NAICS Code
 
-Check the eligibility of a product for any valid 2-6 digit NAICS code or computed NAICS Hash. https://api.askKodiak.com/doc/#api-Product_Utils-ProductIsEligibleForHash
+Check the eligibility of a product for any valid 2-6 digit NAICS code or computed NAICS Hash. https://api.askKodiak.com/doc/v1/#api-Product_Utils-ProductIsEligibleForHash
 
 ##### Using Callbacks
 ```js
@@ -566,7 +566,7 @@ askKodiak.isProductEligibleForNaics('-Kv9s36or1XZKVHvlYwx', '44-45').then(functi
 
 #### Get Eligibility By NAICS Group Type
 
-Get the eligibility of a product at a given NAICS group level (`sector`, `subsector`, etc).https://api.askkodiak.com/doc/#api-Product_Utils-ProductEligibilityForType
+Get the eligibility of a product at a given NAICS group level (`sector`, `subsector`, etc).https://api.askKodiak.com/doc/v1/#api-Product_Utils-ProductEligibilityForType
 
 ##### Using Callbacks
 ```js
@@ -600,7 +600,7 @@ askKodiak.getEligibilityByNaicsGroupType('-Kv9s36or1XZKVHvlYwx', 'sector').then(
 
 #### Render Conditional Content
 
-Render conditional content for the product associated with the specified conditions. https://api.askKodiak.com/doc/#api-Product_Utils-RenderConditionalContentForProduct
+Render conditional content for the product associated with the specified conditions. https://api.askKodiak.com/doc/v1/#api-Product_Utils-RenderConditionalContentForProduct
 
 ##### Using Callbacks
 ```js
@@ -625,7 +625,7 @@ askKodiak.renderConditionalContent('-Kv9s36or1XZKVHvlYwx', { naicsGroups: '44-45
 
 #### Business Entity Types
 
-Get a list of business entity types for use decoding the coded values associated with a product. https://api.askKodiak.com/doc/#api-Reference_Data-BusinessEntityTypes
+Get a list of business entity types for use decoding the coded values associated with a product. https://api.askKodiak.com/doc/v1/#api-Reference_Data-BusinessEntityTypes
 
 ##### Using Callbacks
 ```js
@@ -660,7 +660,7 @@ askKodiak.getRefDataEntityTypes().then(function (response) {
 
 #### Product Codes
 
-Get a list of product codes for use decoding the coded values associated with a product.  https://api.askKodiak.com/doc/#api-Reference_Data-ProductCodes
+Get a list of product codes for use decoding the coded values associated with a product.  https://api.askKodiak.com/doc/v1/#api-Reference_Data-ProductCodes
 
 ##### Using Callbacks
 ```js
@@ -697,7 +697,7 @@ askKodiak.getRefDataProductCodes().then(function (response) {
 
 #### States
 
-Get a list of US State name/value pairs. https://api.askKodiak.com/doc/#api-Reference_Data-States
+Get a list of US State name/value pairs. https://api.askKodiak.com/doc/v1/#api-Reference_Data-States
 
 ##### Using Callbacks
 ```js
@@ -735,11 +735,11 @@ askKodiak.getRefDataStates().then(function (response) {
 
 ### Suggest
 
-If your application has a scenario where the user needs to type in a NAICS code, these interfaces are great for making suggestions in a typeahead control.
+If your application has a scenario where the user needs to type in a NAICS code, these interfaces are great for making suggestions in a type-ahead control.
 
 #### Naics Codes
 
-Get suggested hashes associated with a search term. https://api.askKodiak.com/doc/#api-Suggest-NAICSCodes
+Get suggested hashes associated with a search term. https://api.askKodiak.com/doc/v1/#api-Suggest-NAICSCodes
 
 ##### Using Callbacks
 ```js
@@ -770,7 +770,7 @@ askKodiak.suggestNaicsCodes('ro', { hitsPerPage: '100' }).then(function (respons
 #### Naics Groups
 
 Get suggested 2-6 digit NAICS groups for a search term.
-https://api.askKodiak.com/doc/#api-Suggest-NAICSGroups
+https://api.askKodiak.com/doc/v1/#api-Suggest-NAICSGroups
 
 ##### Using Callbacks
 ```js
