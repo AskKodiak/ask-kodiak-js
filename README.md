@@ -7,6 +7,7 @@
  * [Basic Usage](#basic-usage) 
  * [Contributing](#contributing)
  * [Supported Environments](#supported-environments) 
+ * [Upgrading](#upgrading)
  * [Documentation](#documentation)
 
 ## Overview 
@@ -89,6 +90,20 @@ requests, code review feedback, and also pull requests.
 ## Supported Environments
 
 Ask Kodiak JS supports all major modern browsers. If you choose to enable Ask Kodiak JS Promise support in your implementation and intend to support Internet Explorer, you'll need to implement a polyfill like https://github.com/taylorhakes/promise-polyfill. 
+
+## Upgrading
+
+Version 2 brings with it breaking changes. Make sure to review the [Ask Kodiak API Upgrade Guide](https://api-qa.askkodiak.com/dev/doc/v2/#api-Upgrade_Guides) before upgrading.
+
+Changes to this library:
+
+  * added **Product** method [`getConditionalRules`](#get-conditional-rules).
+  * removed **Company** method `getCompanyProfile`.
+  * added **Company** method [`getCompany`](#get-company) (replaces the above).
+  * added **Analytics** method [`getReferrals`](#get-referrals).
+  * added **Analytics** method [`getReferral`](#get-referral).
+  * removed **Reference Data** method `getRefDataStates`.
+  * added **Reference Data** method [`getRefDataGeos`](#geographies) (replaces the above).
 
 ## Documentation 
 
