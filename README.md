@@ -93,7 +93,7 @@ Ask Kodiak JS supports all major modern browsers. If you choose to enable Ask Ko
 
 ## Upgrading
 
-Version 2 brings with it breaking changes. Make sure to review the [Ask Kodiak API Upgrade Guide](https://api-qa.askkodiak.com/dev/doc/v2/#api-Upgrade_Guides) before upgrading.
+Version 2 brings with it breaking changes. Make sure to review the [Ask Kodiak API Upgrade Guide](https://api.askkodiak.com/doc/v2/#api-Upgrade_Guides) before upgrading.
 
 Changes to this library:
 
