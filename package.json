@@ -1,6 +1,6 @@
 {
   "name": "ask-kodiak-js",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "A dependency-free javascript implementation of the Ask Kodiak API for use in front-end web projects.",
   "main": "index.js",
   "scripts": {
@@ -25,13 +25,11 @@
     "url": "https://github.com/AskKodiak/ask-kodiak-js/issues"
   },
   "homepage": "https://github.com/AskKodiak/ask-kodiak-js#readme",
-  "dependencies": {
-    "eslint": "^5.12.1",
-    "node-minify": "^3.6.0"
-  },
+  "dependencies": {},
   "devDependencies": {
     "chai": "^4.2.0",
     "del": "^3.0.0",
+    "eslint": "^5.12.1",
     "gulp": "^4.0.0",
     "gulp-live-server": "0.0.31",
     "gulp-rename": "^1.4.0",
