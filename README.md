@@ -750,7 +750,7 @@ askKodiak.getRefDataProductCodes().then(function (response) {
 
 #### Geographies
 
-Get geographies supported by Ask Kodiak as objects indexed by an ISO 3166-2 code. For more information on the ISO 3166 standard, see https://www.iso.org/iso-3166-country-codes.html. https://api.askkodiak.com/doc/v2/#api-Reference_Geographies
+Get geographies supported by Ask Kodiak as objects indexed by an ISO 3166-2 code. For more information on the ISO 3166 standard, see https://www.iso.org/iso-3166-country-codes.html. https://api.askkodiak.com/doc/v2/#api-Reference_Data-Geographies
 
 ##### Using Callbacks
 ```js
