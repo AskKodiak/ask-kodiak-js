@@ -12,7 +12,7 @@
 
 ## Overview 
 
-Ask Kodiak JS is a dependency free implementation of the [Ask Kodiak API](https://api.askKodiak.com/doc/) for browser environments. API Keys are required to use, you can obtain those keys from Company Settings once you've created an account.
+Ask Kodiak JS is a dependency free implementation of the [Ask Kodiak API](https://api.askKodiak.com/doc/v2) for browser environments. API Keys are required to use, you can obtain those keys from Company Settings once you've created an account.
 
 ## Installation
 
