@@ -1,6 +1,6 @@
 {
   "name": "ask-kodiak-js",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "A dependency-free javascript implementation of the Ask Kodiak API for use in front-end web projects.",
   "main": "index.js",
   "scripts": {
