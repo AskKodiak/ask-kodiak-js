@@ -5,7 +5,8 @@ const { series, parallel, src, dest } = require('gulp'),
       rename = require('gulp-rename'),
       strip = require('gulp-strip-comments'),
       del = require('del'),
-      gls = require('gulp-live-server');
+      open = require('gulp-open'), // Gulp browser opening plugin
+      connect = require('gulp-connect'); // Gulp Web server runner plugin;
 
 var test = {
       clean: function () {
@@ -37,9 +38,17 @@ var test = {
         return src('node_modules/chai/**')
           .pipe(dest('builds/chai'));
       },
-      serve: function () {
-        var server = gls.static('builds'); //equals to gls.static('public', 3000);
-        server.start();
+      serve: function (done) {
+        connect.server({
+          root: './builds',
+          port: 3000
+        });
+      },
+      browser: function () {
+        return open({
+          app: 'Google Chrome',
+          uri: 'http://localhost:3000'
+        });
       }
     },
     dist = {

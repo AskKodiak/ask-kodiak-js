@@ -49,7 +49,7 @@ describe('Products For Company', function () {
     askKodiak.productsForCompany(gid, {'summaryOnly': true}, function (res) {
       var ok = true,
           actualProps,
-          expectedProps = ['id', 'name', 'ownerId'],
+          expectedProps = ['id', 'name', 'ownerId', 'coverageType', 'logo'],
           products = res.products,
           i,
           ix;

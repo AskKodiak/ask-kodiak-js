@@ -59,7 +59,7 @@ describe('Products For Code (Callbacks)', function () {
     askKodiak.productsForCode('44-45', {'summaryOnly': true}, function (res) {
       var ok = true,
           actualProps,
-          expectedProps = ['id', 'name', 'ownerId'],
+          expectedProps = ['id', 'name', 'ownerId', 'coverageType', 'logo'],
           products = res.products,
           i,
           ix;
@@ -287,7 +287,7 @@ describe('Products For Code (Promises)', function () {
     askKodiakPromises.productsForCode('44-45', {'summaryOnly': true}).then(function (res) {
       var ok = true,
           actualProps,
-          expectedProps = ['id', 'name', 'ownerId'],
+          expectedProps = ['id', 'name', 'ownerId', 'coverageType', 'logo'],
           products = res.products,
           i,
           ix;
