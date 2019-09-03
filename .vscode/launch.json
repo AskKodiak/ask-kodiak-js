@@ -16,8 +16,9 @@
       {
         "type": "node",
         "request": "launch",
-        "name": "Launch Tests",
+        "name": "Serve Browser-Based Tests",
         "program": "${workspaceFolder}/node_modules/gulp/bin/gulp.js",
+        "console": "integratedTerminal"
       }
     ]
 }

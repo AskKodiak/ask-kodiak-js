@@ -9,7 +9,10 @@
     <div id="mocha"></div>
     <script src="mocha/mocha.js"></script>
     <script src="chai/chai.js"></script>
-    <script>mocha.setup('bdd')</script>
+    <script>
+      mocha.setup('bdd');
+      mocha.timeout(8000);
+    </script>
     <!-- Ask Kodiak Lib -->
     <script src="ask-kodiak-js-min.js"></script>
     <!-- Tests -->
@@ -89,7 +92,7 @@
           <small id="keyHelp" class="form-text text-muted">You can get your API Key from the company settings section of Ask Kodiak.</small>
         </div>
         <div class="form-group">
-          <label for="key">Product ID:</label>
+          <label for="key">Product ID (must have rules):</label>
           <input type="text" class="form-control" id="pid" aria-describedby="pidHelp" placeholder="ID of a test product">
           <small id="pidHelp" class="form-text text-muted">The id of a product your group can access that has rich data (including rules) for testing.</small>
         </div>

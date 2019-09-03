@@ -1,5 +1,29 @@
 var assert = chai.assert;
 
+function areSummaryOnly(products) {
+  var actualProps,
+      expectedProps = ['id', 'name', 'ownerId', 'coverageType', 'logo'],
+      i,
+      ix,
+      ok = true;
+
+  for (i = 0; i < products.length; i++) {
+    actualProps = Object.keys(products[i]);
+    for (ix = 0; ix < actualProps.length; ix++) {
+      if (expectedProps.indexOf(actualProps[ix]) === -1) {
+        // make sure the unexpected property is not a response specific value
+        // as indicated by an '_'
+        if (actualProps[ix].indexOf('_') !== 0) {
+          ok = false;
+        }
+      }
+    }
+  }
+
+  return ok;
+
+}
+
 describe('Products For Code (Callbacks)', function () {
   it('Returns expected object properties', function (done) {
     askKodiak.productsForCode('44-45', {}, function (res) {
@@ -57,23 +81,9 @@ describe('Products For Code (Callbacks)', function () {
   });
   it('Returns summary only results', function (done) {
     askKodiak.productsForCode('44-45', {'summaryOnly': true}, function (res) {
-      var ok = true,
-          actualProps,
-          expectedProps = ['id', 'name', 'ownerId', 'coverageType', 'logo'],
-          products = res.products,
-          i,
-          ix;
+      var products = res.products;
 
-      for (i = 0; i < products.length; i++) {
-        actualProps = Object.keys(products[i]);
-        for (ix = 0; ix < actualProps.length; ix++) {
-          if (expectedProps.indexOf(actualProps[ix]) === -1) {
-            ok = false;
-          }
-        }
-      }
-
-      assert.equal(ok, true);
+      assert.isTrue(areSummaryOnly(products));
       done();
     });
   });
@@ -285,23 +295,9 @@ describe('Products For Code (Promises)', function () {
   });
   it('Returns summary only results', function (done) {
     askKodiakPromises.productsForCode('44-45', {'summaryOnly': true}).then(function (res) {
-      var ok = true,
-          actualProps,
-          expectedProps = ['id', 'name', 'ownerId', 'coverageType', 'logo'],
-          products = res.products,
-          i,
-          ix;
+      var products = res.products;
 
-      for (i = 0; i < products.length; i++) {
-        actualProps = Object.keys(products[i]);
-        for (ix = 0; ix < actualProps.length; ix++) {
-          if (expectedProps.indexOf(actualProps[ix]) === -1) {
-            ok = false;
-          }
-        }
-      }
-
-      assert.equal(ok, true);
+      assert.isTrue(areSummaryOnly(products));
       done();
     });
   });
