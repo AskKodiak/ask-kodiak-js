@@ -37,6 +37,6 @@
     "gulp-strip-comments": "^2.5.2",
     "gulp-uglify": "^3.0.2",
     "live-server": "^1.2.1",
-    "mocha": "^6.2.0"
+    "mocha": "^10.2.0"
   }
 }
